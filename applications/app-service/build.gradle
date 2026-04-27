@@ -1,6 +1,7 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project(':security')
 	implementation project(':rest-consumer')
 	implementation 'tools.jackson.core:jackson-databind'
 	testImplementation 'org.springframework:spring-web'
