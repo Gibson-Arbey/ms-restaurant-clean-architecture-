@@ -24,4 +24,9 @@ public class RestaurantAdapter implements RestaurantRepository {
                         RestaurantMapper
                             .toEntity(restaurant)));
     }
+
+    @Override
+    public boolean existsByIdAndOwnerId(Long id, Long ownerId) {
+        return restaurantJpaRepository.existsByIdAndOwnerId(id, ownerId);
+    }
 }
