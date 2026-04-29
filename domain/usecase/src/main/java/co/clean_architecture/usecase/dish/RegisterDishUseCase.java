@@ -18,7 +18,7 @@ public class RegisterDishUseCase {
             throw new NotRestaurantOwnerException("Restaurant not found for the given restaurant ID and owner ID");
         }
 
-        return dishRepository.create(
+        return dishRepository.save(
                 Dish.create(
                         command.name(),
                         command.price(),

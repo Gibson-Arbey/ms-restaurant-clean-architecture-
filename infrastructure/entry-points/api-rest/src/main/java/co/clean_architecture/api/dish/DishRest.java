@@ -3,16 +3,16 @@ package co.clean_architecture.api.dish;
 import co.clean_architecture.api.config.SecurityUtil;
 import co.clean_architecture.api.dish.mapper.DishResponseMapper;
 import co.clean_architecture.api.dish.mapper.RegisterDishRequestMapper;
+import co.clean_architecture.api.dish.mapper.UpdateDishRequestMapper;
 import co.clean_architecture.api.dish.request.RegisterDishRequest;
+import co.clean_architecture.api.dish.request.UpdateDishRequest;
 import co.clean_architecture.api.dish.response.DishResponse;
 import co.clean_architecture.usecase.dish.RegisterDishUseCase;
+import co.clean_architecture.usecase.dish.UpdateDishUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DishRest {
 
     private final RegisterDishUseCase registerDishUseCase;
+    private final UpdateDishUseCase updateDishUseCase;
 
     @PostMapping
     public ResponseEntity<DishResponse> register(@RequestBody RegisterDishRequest request) {
@@ -34,5 +35,11 @@ public class DishRest {
                         )
                 )
         );
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody UpdateDishRequest request) {
+        updateDishUseCase.execute(UpdateDishRequestMapper.toCommand(request), id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

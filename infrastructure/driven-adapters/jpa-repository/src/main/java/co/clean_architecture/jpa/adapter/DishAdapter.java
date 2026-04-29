@@ -16,7 +16,12 @@ public class DishAdapter implements DishRepository {
 
     @Override
     @Transactional
-    public Dish create(Dish dish) {
+    public Dish save(Dish dish) {
         return DishMapper.toDomain(dishJpaRepository.save(DishMapper.toEntity(dish)));
+    }
+
+    @Override
+    public Dish findById(Long id) {
+        return DishMapper.toDomain(dishJpaRepository.findById(id).orElse(null));
     }
 }

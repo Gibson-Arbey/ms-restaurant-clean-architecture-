@@ -6,6 +6,7 @@ import co.clean_architecture.model.dish.Dish;
 public class DishResponseMapper {
 
     public static DishResponse toResponse(Dish dish) {
+        if(dish == null) return null;
         return DishResponse.builder()
                 .id(dish.getId())
                 .name(dish.getName())

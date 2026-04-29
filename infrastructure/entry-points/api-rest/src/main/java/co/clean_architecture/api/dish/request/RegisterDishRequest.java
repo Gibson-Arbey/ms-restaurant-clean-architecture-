@@ -1,6 +1,5 @@
 package co.clean_architecture.api.dish.request;
 
-import co.clean_architecture.model.dish.CategoryEnum;
 import lombok.Getter;
 import lombok.Setter;
 

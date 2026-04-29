@@ -7,6 +7,7 @@ import co.clean_architecture.usecase.dish.command.RegisterDishCommand;
 public class RegisterDishRequestMapper {
 
     public static RegisterDishCommand toCommand(RegisterDishRequest request) {
+        if(request == null) return null;
         return new RegisterDishCommand(
             request.getName(),
             request.getPrice(),

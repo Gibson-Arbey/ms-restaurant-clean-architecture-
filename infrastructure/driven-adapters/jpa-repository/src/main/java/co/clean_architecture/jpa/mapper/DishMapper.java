@@ -8,6 +8,7 @@ public class DishMapper {
 
 
     public static Dish toDomain(DishEntity dishEntity) {
+        if(dishEntity == null) return null;
         return Dish.restore(
                 dishEntity.getId(),
                 dishEntity.getName(),
@@ -21,6 +22,7 @@ public class DishMapper {
     }
 
     public static DishEntity toEntity(Dish dish) {
+        if(dish  == null) return null;
         return DishEntity.builder()
                 .id(dish.getId())
                 .name(dish.getName())

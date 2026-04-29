@@ -6,6 +6,7 @@ import co.clean_architecture.model.restaurant.Restaurant;
 public class RestaurantMapper {
 
     public static Restaurant toDomain(RestaurantEntity restaurantEntity) {
+        if(restaurantEntity == null) return null;
         return Restaurant.restore(
                 restaurantEntity.getId(),
                 restaurantEntity.getName(),
@@ -18,6 +19,7 @@ public class RestaurantMapper {
     }
 
     public static RestaurantEntity toEntity(Restaurant restaurant) {
+        if(restaurant == null) return null;
         return RestaurantEntity.builder()
                 .id(restaurant.getId())
                 .name(restaurant.getName())

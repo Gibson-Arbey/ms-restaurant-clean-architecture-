@@ -53,4 +53,14 @@ public class Dish {
     public static Dish restore(Long id, String name, Integer price, String description, String imgUrl, CategoryEnum category, Long restaurantId, Boolean active) {
         return new Dish(id, name, price, description, imgUrl, category, restaurantId, active);
     }
+
+    public static Dish update(Dish current, Integer newPrice, String newDescription) {
+        if (current == null) {
+            throw new InvalidFieldException("Dish cannot be null");
+        }
+
+        return new Dish(current.getId(), current.getName(), newPrice, newDescription,
+                current.getImgUrl(), current.getCategory(), current.getRestaurantId(), current.getActive()
+        );
+    }
 }
