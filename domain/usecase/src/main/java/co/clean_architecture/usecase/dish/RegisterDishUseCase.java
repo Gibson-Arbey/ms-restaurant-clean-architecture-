@@ -14,7 +14,7 @@ public class RegisterDishUseCase {
     private final RestaurantRepository restaurantRepository;
 
     public Dish execute(RegisterDishCommand command, Long ownerId) {
-        if(!restaurantRepository.existsByIdAndOwnerId(command.restaurantId(), ownerId)) {
+        if(restaurantRepository.existsByRestaurantIdAndOwnerId(command.restaurantId(), ownerId)) {
             throw new NotRestaurantOwnerException("Restaurant not found for the given restaurant ID and owner ID");
         }
 

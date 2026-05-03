@@ -27,4 +27,19 @@ public class UserConsumer implements UserRepository {
             return false;
         }
     }
+
+    @Override
+    public Boolean existsEmployeeById(Long userId) {
+        try {
+            Boolean response = userRestClient.get()
+                    .uri("/api/v1/user/{userId}/exists-employee", userId)
+                    .retrieve()
+                    .body(Boolean.class);
+
+            return Boolean.TRUE.equals(response);
+        } catch (Exception e) {
+            log.error("Error consuming user service: {}", e.getMessage());
+            return false;
+        }
+    }
 }
